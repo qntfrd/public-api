@@ -1,8 +1,9 @@
-name: Build, Publish and Deploy
+name: Build & Publish
 
 on:
   release:
-    types: [published]
+    types:
+      - published
 
 concurrency:
   group: ${{ github.ref }}
@@ -58,7 +59,7 @@ jobs:
       - name: deploy infra
         run: |
           cd infra
-          git config --global user.email "ci@cyrius.co"
-          git config --global user.name "Cyrius CI/CD"
+          git config --global user.email "ci@lio.dev"
+          git config --global user.name "Lio CI/CD"
           git commit -am "chore(bump): ${{github.repository}} to ${{ needs.build.outputs.version }}"
           git push
