@@ -2,6 +2,8 @@ name: Build & Publish
 
 on:
   release:
+    types:
+      - published
 
 concurrency:
   group: ${{ github.ref }}
@@ -41,7 +43,7 @@ jobs:
         with:
           repository: qntfrd/infra
           path: infra
-          token: ${{ secrets.QNTFRD_PAT }}
+          token: ${{ secrets.LIO_PAT }}
           submodules: true
 
       - name: get base image
