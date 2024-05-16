@@ -21,7 +21,7 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: get version
-        run: echo "latest=${GITHUB_REF##*/}"" >> $GITHUB_ENV
+        run: echo "latest=${GITHUB_REF##*/}" >> $GITHUB_ENV
       - name: build & push
         uses: docker/build-push-action@v5
         with:
