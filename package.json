@@ -5,13 +5,24 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node build"
+    "start": "node build",
+    "dev": "docker-compose up --abort-on-container-exit --renew-anon-volumes",
+    "_dev": "nodemon --watch src --exec 'ts-node' src/index.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/koa-router": "^7.4.8",
     "@types/node": "^20.12.12",
+    "nodemon": "^3.1.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "koa": "^2.15.3",
+    "koa-body": "^6.0.1",
+    "koa-router": "^12.0.1",
+    "mongodb": "^6.6.2"
   }
 }

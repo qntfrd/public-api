@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    expose:
+      - 27017
+    logging:
+      driver: "none"
+
+  public-api:
+    image: node:latest
+    container_name: public-api
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - 8000:8000
+    depends_on:
+      - mongo
+    environment:
+      BOOKMARKS_MONGODB_URI: mongodb://mongo:27017/bookmarks
+      PORT: 8000
+      ENV: ${ENV}
+    command: "yarn _dev"
