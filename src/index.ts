@@ -3,6 +3,7 @@ import { MongoClient } from "mongodb"
 import Koa from "koa"
 import Router from "koa-router"
 import bodyparser from "koa-body"
+import cors from "@koa/cors"
 
 let counter = BigInt(Math.floor(Math.random() * 1000))
 let now = BigInt(Date.now())
@@ -79,6 +80,11 @@ const run = async () => {
   const client = await mongoP
 
   const koa = new Koa()
+    .use(cors({
+      origin: "*",
+      allowMethods: ["GET", "POST", "PUT", "DELETE"],
+      allowHeaders: ["Content-Type", "Authorization"]
+    }))
     .use(bodyparser())
     .use(healthController())
     .use(bookmarksController(client))
